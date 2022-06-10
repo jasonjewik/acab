@@ -8,8 +8,9 @@ class Pet;
 class Deck {
   public:
     Deck(const int size);
-    int getSize() const { return pets.size(); };
     Pet*& operator[] (int index) { return pets[index]; };
+    int getSize() const { return pets.size(); };    
+    void swap(int index_a, int index_b);
   private:
     std::vector<Pet*> pets;
 };
