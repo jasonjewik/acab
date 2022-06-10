@@ -18,3 +18,9 @@ $ mkdir build && cd build
 $ cmake ..
 $ make
 ```
+
+Running tests.
+```shell
+$ cd build
+$ ctest
+```
