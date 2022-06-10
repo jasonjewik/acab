@@ -11,3 +11,10 @@ Building and running the Docker image/container.
 $ docker/build.sh
 $ docker/start.sh
 ```
+
+Building the source code.
+```shell
+$ mkdir build && cd build
+$ cmake ..
+$ make
+```
