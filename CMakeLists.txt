@@ -33,7 +33,12 @@ add_library(pet src/lib/pet.cc)
 # target_link_libraries()
 
 # Tests
+add_executable(pet_test tests/pet_test.cc)
+target_link_libraries(pet_test pet gtest_main)
+gtest_discover_tests(pet_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+
 add_executable(deck_test tests/deck_test.cc)
 target_link_libraries(deck_test deck pet gtest_main)
-# add_test()
 gtest_discover_tests(deck_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+
+# add_test()
