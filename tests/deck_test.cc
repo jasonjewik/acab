@@ -1,5 +1,3 @@
-#include <memory>
-
 #include "gtest/gtest.h"
 #include "deck.h"
 #include "pet.h"
@@ -7,8 +5,8 @@
 class DeckTest : public ::testing::Test {
   public:
     int deckSize = 5;
-    Deck deck(deckSize);
-    std::shared_ptr<Pet> p(new Pet(1, 2, 0, 1));
+    Deck deck = Deck(deckSize);
+    Pet* p = new Pet(1, 2, 0, 1);
 };
 
 TEST_F(DeckTest, GetDeckSize) {

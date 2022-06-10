@@ -8,10 +8,9 @@ class Pet;
 class Deck {
   public:
     Deck(const int size);
-    int getSize() const { return size; };
-    (Pet*)& operator[] (int index);
+    int getSize() const { return pets.size(); };
+    Pet*& operator[] (int index) { return pets[index]; };
   private:
-    int size;
     std::vector<Pet*> pets;
 };
 

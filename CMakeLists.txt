@@ -9,6 +9,8 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     You may need to remove CMakeCache.txt")
 endif()
 
+set(CMAKE_CXX_STANDARD 11)
+
 # Enable cmake testing
 include(CTest)
 enable_testing()
@@ -32,6 +34,6 @@ add_library(pet src/lib/pet.cc)
 
 # Tests
 add_executable(deck_test tests/deck_test.cc)
-target_link_libraries(deck_test deck pet)
+target_link_libraries(deck_test deck pet gtest_main)
 # add_test()
 gtest_discover_tests(deck_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)

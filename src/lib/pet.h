@@ -14,8 +14,8 @@ class Pet {
     int getLevel() const { return level; };
 
     // Setters
-    void setHealth(int health_) { health = health_ };
-    void setAttack(int attack_) { attack = attack_ };    
+    void setHealth(int health_) { health = health_; };
+    void setAttack(int attack_) { attack = attack_; };    
     void setExp(int exp_) { exp = exp_; };
     void setLevel(int level_) { level = level_; }
     
