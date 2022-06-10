@@ -4,6 +4,7 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
+    libgtest-dev \
     python3 \
     python3-dev \
     python3-pip \

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t boost-python:latest $(pwd)/docker
+docker build -t acab:latest $(pwd)/docker

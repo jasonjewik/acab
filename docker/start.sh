@@ -2,4 +2,4 @@
 docker run --rm -it \
     --mount type=bind,src="$(pwd)",dst=/home/my-project \
     --entrypoint bash \
-    boost-python:latest
+    acab:latest

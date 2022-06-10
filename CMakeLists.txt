@@ -9,6 +9,14 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     You may need to remove CMakeCache.txt")
 endif()
 
+# Enable cmake testing
+include(CTest)
+enable_testing()
+
+# Enable GoogleTest
+include(GoogleTest)
+add_subdirectory(/usr/src/googletest googletest)
+
 # Enable compiler warnings
 add_compile_options(-Wall -Wextra -pedantic)
 
@@ -20,3 +28,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # add_library()
 # add_executable()
 # target_link_libraries()
+
+# Tests
+# add_test()
+# gtest_discover_tests()
