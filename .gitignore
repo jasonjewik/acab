@@ -33,4 +33,5 @@
 
 # Miscellaneous
 .bash_history
+.vscode/
 build/
