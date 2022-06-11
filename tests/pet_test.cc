@@ -1,15 +1,23 @@
+#include <vector>
+
 #include "gtest/gtest.h"
+#include "bounded_value.h"
 #include "pet.h"
 
-class PetTest : public ::testing::Test {
-  public:
-    Pet* p = new Pet(1, 2, 0, 1);
-    Pet* q = new Pet(3, 1, 1, 2);
-};
+TEST(PetTest, TestCreate) {
+  BoundedValue<short> health(1, 1, 50);
+  BoundedValue<short> attack(1, 1, 50);
+  short level = 0;
+  short exp = 0;
+  
+  std::vector<BoundedValue<short>> expThresholds;
+  expThresholds.push_back(BoundedValue<short>(0, 0, 2));
+  expThresholds.push_back(BoundedValue<short>(0, 0, 3));
 
-TEST_F(PetTest, MergePets) {
-  int pexp = p->getExp();
-  int qexp = q->getExp();
-  EXPECT_EQ(p->merge(q), true);
-  EXPECT_EQ(p->getExp(), pexp + qexp + 1);
+  Pet p(health, attack, level, exp, expThresholds);
+
+  EXPECT_EQ(p.getHealth(), health.value());
+  EXPECT_EQ(p.getAttack(), attack.value());
+  EXPECT_EQ(p.getLevel(), level);
+  EXPECT_EQ(p.getExp(), exp);
 }

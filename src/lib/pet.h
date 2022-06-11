@@ -1,31 +1,39 @@
 #ifndef PET
 #define PET
 
+#include <vector>
+
+#include "bounded_value.h"
+
+enum HealthStatus { fainted, alive };
+
 class Pet {
   public:
     // TODO @jasonjewik: Add params for status condition and unique ability
-    Pet(int health, int attack, int exp, int level)
-      : health(health), attack(attack), exp(exp), level(level) { };
+    Pet(BoundedValue<short> health_, BoundedValue<short> attack_, short level_,
+        short exp_, std::vector<BoundedValue<short>>& expThresholds_);    
 
     // Getters
-    int getHealth() const { return health; };
-    int getAttack() const { return attack; };
-    int getExp() const { return exp; };
-    int getLevel() const { return level; };
+    short getHealth() const { return health.value(); };
+    short getAttack() const { return attack.value(); };    
+    short getLevel() const { return level.value(); };
+    short getExp() const { return exp.value(); };
 
     // Setters
-    void setHealth(int health_) { health = health_; };
-    void setAttack(int attack_) { attack = attack_; };    
-    void setExp(int exp_);
-    void setLevel(int level_);
+    HealthStatus setHealth(short health_);
+    void setAttack(short attack_);
+    bool incrementExp();    
 
-    bool merge(Pet* other);
+    // bool merge(Pet* other);
     
   private:
-    int health;
-    int attack;
-    int exp;
-    int level;
+    bool levelUp();
+
+    BoundedValue<short> health;
+    BoundedValue<short> attack;
+    BoundedValue<short> level;
+    BoundedValue<short> exp;
+    std::vector<BoundedValue<short>> expThresholds;
 };
 
 #endif

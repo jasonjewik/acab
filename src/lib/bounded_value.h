@@ -1,3 +1,6 @@
+#ifndef BOUNDED_VALUE
+#define BOUNDED_VALUE
+
 template <typename T>
 class BoundedValue {
   public:
@@ -19,3 +22,5 @@ class BoundedValue {
     T minVal;
     T maxVal;
 };
+
+#endif
