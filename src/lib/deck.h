@@ -11,7 +11,6 @@ class Deck {
     Pet*& operator[] (int index) { return pets[index]; };
     int getSize() const { return pets.size(); };
     void swap(int index_a, int index_b);
-    bool merge(int index_from, int index_to);
   private:
     std::vector<Pet*> pets;
 };

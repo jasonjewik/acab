@@ -6,8 +6,8 @@ class DeckTest : public ::testing::Test {
   public:
     int deckSize = 5;
     Deck deck = Deck(deckSize);
-    Pet* p = new Pet(1, 2, 0, 1);
-    Pet* q = new Pet(3, 1, 1, 2);
+    Pet* p = new Pet();
+    Pet* q = new Pet();
 };
 
 TEST_F(DeckTest, GetDeckSize) {
