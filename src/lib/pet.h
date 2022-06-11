@@ -9,6 +9,8 @@ enum HealthStatus { fainted, alive };
 
 class Pet {
   public:
+    Pet() { };
+
     // TODO @jasonjewik: Add params for status condition and unique ability
     Pet(BoundedValue<short> health_, BoundedValue<short> attack_, short level_,
         short exp_, std::vector<BoundedValue<short>>& expThresholds_);    
@@ -27,8 +29,6 @@ class Pet {
     // bool merge(Pet* other);
     
   private:
-    bool levelUp();
-
     BoundedValue<short> health;
     BoundedValue<short> attack;
     BoundedValue<short> level;

@@ -6,7 +6,7 @@ Pet::Pet(BoundedValue<short> health_, BoundedValue<short> attack_, short level_,
   attack = attack_;
   expThresholds = expThresholds_;
 
-  level = BoundedValue<short>(0, level_, expThresholds_.size() - 1);
+  level = BoundedValue<short>(0, level_, expThresholds_.size());
   exp = BoundedValue<short>(
     expThresholds_[level.value()].min(), 
     exp_,
@@ -26,24 +26,18 @@ void Pet::setAttack(short attack_) {
 };
 
 bool Pet::incrementExp() {
-  short difference = exp.value(exp.value() + 1);
-  if (difference > 0) {
-    while (difference > 0) {
-      exp = expThresholds[level.value()];
-      difference = exp.value(difference);
-    }
-    return true;
-  } else if (exp.isMax() && levelUp()) {
-    exp = expThresholds[level.value()];
-    return true;
-  }
-  return false;
-};
-
-bool Pet::levelUp() {
-  if (level.isMax())
+  if (level.isMax()) {
+    exp.value(0);
     return false;
-  else
-    level.value(level.value() + 1);
+  }
+
+  exp.value(exp.value() + 1);
+  if (!exp.isMax())
+    return true;
+
+  level.value(level.value() + 1);
+  if (!level.isMax())
+    exp = expThresholds[level.value()];
+  exp.value(0);
   return true;
 };
