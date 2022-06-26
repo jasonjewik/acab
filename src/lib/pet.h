@@ -12,8 +12,13 @@ class Pet {
     Pet() { };
 
     // TODO @jasonjewik: Add params for status condition and unique ability
-    Pet(BoundedValue<short> health_, BoundedValue<short> attack_, short level_,
-        short exp_, std::vector<BoundedValue<short>>& expThresholds_);    
+    Pet(BoundedValue<short> health_, 
+        BoundedValue<short> attack_,
+        BoundedValue<short> level_,
+        BoundedValue<short> exp_, 
+        std::vector<BoundedValue<short>>& expThresholds_)
+      : health(health_), attack(attack_), level(level_), 
+        exp(exp_), expThresholds(expThresholds_) { };
 
     // Getters
     short getHealth() const { return health.value(); };
@@ -25,8 +30,6 @@ class Pet {
     HealthStatus setHealth(short health_);
     void setAttack(short attack_);
     bool incrementExp();    
-
-    // bool merge(Pet* other);
     
   private:
     BoundedValue<short> health;
