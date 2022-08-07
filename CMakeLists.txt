@@ -41,6 +41,10 @@ add_executable(bounded_value_test tests/bounded_value_test.cc)
 target_link_libraries(bounded_value_test bounded_value gtest_main)
 gtest_discover_tests(bounded_value_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
+add_executable(pet_builder_test tests/pet_builder_test.cc)
+target_link_libraries(pet_builder_test pet_builder gtest_main)
+gtest_discover_tests(pet_builder_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+
 add_executable(pet_test tests/pet_test.cc)
 target_link_libraries(pet_test pet_builder gtest_main)
 gtest_discover_tests(pet_test WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
