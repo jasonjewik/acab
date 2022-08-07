@@ -7,25 +7,31 @@
 
 class PetTest : public ::testing::Test {
   public:
+    short ability;
     BoundedValue<short> health;
     BoundedValue<short> attack;
     short level;
     short exp;
     std::vector<BoundedValue<short>> expThresholds;
+    short status;
     PetBuilder pb;
     Pet* p;
 
   protected:
     void SetUp() override {
+      ability = 0;
       health = BoundedValue<short>(1, 1, 50);
       attack = BoundedValue<short>(1, 1, 50);
       level = 0;
       exp = 0;
       expThresholds.push_back(BoundedValue<short>(0, 0, 2));
       expThresholds.push_back(BoundedValue<short>(0, 0, 3));
-      pb.setHealth(health)
+      status = 0;
+      pb.setAbility(ability)
+        .setHealth(health)
         .setAttack(attack)
-        .setExpLvl(level, exp, expThresholds);
+        .setExpLvl(level, exp, expThresholds)
+        .setStatus(status);
       p = pb.build();
     }
 
@@ -35,10 +41,12 @@ class PetTest : public ::testing::Test {
 };
 
 TEST_F(PetTest, Getters) {
+  EXPECT_EQ(p->getAbility(), ability);
   EXPECT_EQ(p->getHealth(), health.value());
   EXPECT_EQ(p->getAttack(), attack.value());
   EXPECT_EQ(p->getLevel(), level);
   EXPECT_EQ(p->getExp(), exp);
+  EXPECT_EQ(p->getStatus(), status);
 }
 
 TEST_F(PetTest, SetHealth) {
@@ -124,4 +132,13 @@ TEST_F(PetTest, IncrementExp_LevelUpPastMax) {
   EXPECT_FALSE(p->incrementExp());
   EXPECT_EQ(p->getLevel(), maxLevel);
   EXPECT_EQ(p->getExp(), 0);
+}
+
+TEST_F(PetTest, SetStatus) {
+  short oldStatus = p->getStatus();
+  short newStatus = 1;
+  EXPECT_EQ(p->setStatus(newStatus), true);
+  EXPECT_EQ(p->getStatus(), newStatus);
+  EXPECT_EQ(p->setStatus(oldStatus), true);
+  EXPECT_EQ(p->getStatus(), oldStatus);
 }

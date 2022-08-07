@@ -27,3 +27,8 @@ bool Pet::incrementExp() {
   exp.value(0);
   return true;
 };
+
+bool Pet::setStatus(short status_) {
+  status = status_;
+  return true;
+};
